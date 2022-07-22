@@ -29,7 +29,7 @@ This setup had the following benefits:
 ### Different data centers
 Different components were in different data centers, meaning if Teleport Proxy 1 datacenter would experience issues, Teleport Proxy 2 would still be up (same for Teleport Auth and etcd servers). This means that some serious problems would need to occur for Teleport to be completely down.
 
-### **Scaling**
+### Scaling
 This setup also made it effortless to scale the Teleport cluster, as you could just add required components.
 
 &nbsp;
