@@ -47,6 +47,7 @@ More servers you have, more money you pay. Though the costs weren't concerning, 
 ### Speed
 This was the part which caused us to reconsider our setup. Connection time increased by 3-4 seconds, and it was even worse via VPN. This doesn't sound too bad, but it felt too much for our infrastructure.
 
+&nbsp;
 ## Current setup
 After some discussion, we decide to go with much simpler option - Active/Passive setup with 2 servers each of them has both Teleport Proxy and Teleport Auth and stores all data types locally:
 
