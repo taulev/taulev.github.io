@@ -6,7 +6,7 @@ Recently, I had the pleasure of setting up GoTeleport in highly available fashio
 
 We required high availability as our infrastructure would be reachable only via Teleport, so downtime meant users wouldn't be able to reach required servers, thus we wanted no downtime or at most few minutes of it if one of Teleport components would fail.
 
-
+&nbsp;
 ### Initial setup
 Teleport has the following data types:
 - Core cluster state - cluster configuration and identity
@@ -24,13 +24,14 @@ This setup had the following benefits:
 - Different Teleport components were in different data centers
 - Easy to scale
 
+&nbsp;
 #### Different data centers
 Different components were in different data centers, meaning if Teleport Proxy 1 datacenter would experience issues, Teleport Proxy 2 would still be up (same for Teleport Auth and etcd servers). This means that some serious problems would need to occur for Teleport to be completely down.
 
 #### Scaling
 This setup also made it effortless to scale the Teleport cluster, as you could just add required components.
 
-
+&nbsp;
 However, this setup has few drawbacks.
 - Audit events and session recordings are on separate Teleport auth servers
 - Price
@@ -45,7 +46,7 @@ More servers you have, more money you pay. Though the costs weren't concerning, 
 #### Speed
 This was the part which caused us to reconsider our setup. Connection time increased by 3-4 seconds, and it was even worse via VPN. This doesn't sound too bad, but it felt too much for our infrastructure.
 
-
+&nbsp;
 ### Current setup
 After some discussion, we decide to go with much simpler option - Active/Passive setup with 2 servers each of them has both Teleport Proxy and Teleport Auth and stores all data types locally:
 
@@ -70,13 +71,13 @@ Apart from cost reduction, you also have fewer things to maintain, it is a lot e
 #### Audit events and session recordings
 Now as you have only 1 active Teleport Auth server at a time all session recordings and audit event logs will be in one place, so aggregating is no longer necessary and Teleport Web UI become reliable for inspecting them.
 
-
+&nbsp;
 Sadly, everything has its disadvantages:
 - Core cluster state backups are a must
 - Harder to scale
 - Downtime
 
-
+&nbsp;
 #### Backups
 In the original setup, core cluster state was stored in etcd cluster, meaning if one of the Teleport Auth servers would go down, the second server would be fine. Now, if an active Teleport Auth server goes down, and you don't have a backup of a core cluster state, you will lose all user data. Luckily, it is an SQLite file, so backing it up is a minor inconvenience.
 
@@ -88,6 +89,6 @@ If an active Teleport server goes under, you would instantly have downtime, whic
 
 Possible user data inconsistency is another minor problem that rises due to this setup. If the active Teleport server goes down some hours after the latest backup, a passive server might not have the newest information. One of the scenarios where user could feel it would be password change, if a user changes the password and the backup didn't go through yet, after the switch to passive server user's password would be the old one. Luckily, it is something that we are alright with.
 
-
+&nbsp;
 ### Wrapping up
 As discussed, each setup has its advantages and disadvantages, so in the end we had to make a choice and sacrifice some advantages of one setup to get the benefits of another. Fortunately, our requirements allowed us some downtime, which in turn led to faster connection times, reduced maintenance work and costs.
