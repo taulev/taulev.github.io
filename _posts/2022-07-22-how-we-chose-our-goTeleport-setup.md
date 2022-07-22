@@ -91,5 +91,5 @@ If an active Teleport server goes under, you would instantly have downtime, whic
 Possible user data inconsistency is another minor problem that rises due to this setup. If the active Teleport server goes down some hours after the latest backup, a passive server might not have the newest information. One of the scenarios where user could feel it would be password change, if a user changes the password and the backup didn't go through yet, after the switch to passive server user's password would be the old one. Luckily, it is something that we are alright with.
 
 &nbsp;
-### Wrapping up
+## Wrapping up
 As discussed, each setup has its advantages and disadvantages, so in the end we had to make a choice and sacrifice some advantages of one setup to get the benefits of another. Fortunately, our requirements allowed us some downtime, which in turn led to faster connection times, reduced maintenance work and costs.
