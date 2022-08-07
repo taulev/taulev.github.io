@@ -84,7 +84,6 @@ Put this file in the root directory of USB, it should look like:
 ## Updating grub.cfg, isolinux.cfg and txt.cfg
 With the preseed.cfg file in place, you need to tell the installer to use it. For that, you have to update 2 files - **grub.cfg** and **txt.cfg**.
 
-&nbsp;
 #### grub.cfg
 Using above image as root directory, you will find *grub.cfg* in boot/grub directory - `boot/grub/grub.cfg`, open the file and find the following lines:
 ```
@@ -107,7 +106,6 @@ menuentry --hotkey=i 'Install' {
 `preseed/file=/cdrom/preseed.cfg` specifies the preseed file to use.
 
 `auto-install/enable=true` delays the asking of localization questions, without this line you wouldn't be able to preseed them in preseed.cfg
-
 
 &nbsp;
 #### txt.cfg
