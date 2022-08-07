@@ -84,6 +84,8 @@ Put this file in the root directory of USB, it should look like:
 ## Updating grub.cfg, isolinux.cfg and txt.cfg
 With the preseed.cfg file in place, you need to tell the installer to use it. For that, you have to update 2 files - **grub.cfg** and **txt.cfg**.
 
+&nbsp;
+#### grub.cfg
 Using above image as root directory, you will find *grub.cfg* in boot/grub directory - `boot/grub/grub.cfg`, open the file and find the following lines:
 ```
 menuentry --hotkey=i 'Install' {
@@ -108,6 +110,7 @@ menuentry --hotkey=i 'Install' {
 
 
 &nbsp;
+#### txt.cfg
 *txt.cfg* file can be found by navigating from the root directory to isolinux - `isolinux/txt.cfg`, open the file and edit the append line from:
 ```
 label install
@@ -124,8 +127,8 @@ label install
         append preseed/file=/cdrom/preseed.cfg auto-install/enable=true vga=788 initrd=/install.amd/initrd.gz --- quiet
 ```
 
-
 &nbsp;
+#### isolinux.cfg
 Finally, we want to update *isolinux.cfg* file, which can be found in the same directory as *txt.cfg* - `isolinux/isolinux.cfg`. We need to change `default` line from `vesamenu.c32`:
 ```
 # D-I config version 2.0
