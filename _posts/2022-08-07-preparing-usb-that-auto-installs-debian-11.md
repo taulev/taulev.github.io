@@ -106,7 +106,7 @@ menuentry --hotkey=i 'Install' {
 
 `auto-install/enable=true` delays the asking of localization questions, without this line you wouldn't be able to preseed them in preseed.cfg
 
-&nbsp;
+
 *txt.cfg* file can be found by navigating from the root directory to isolinux - `isolinux/txt.cfg`, open the file and edit the append line from:
 ```
 label install
