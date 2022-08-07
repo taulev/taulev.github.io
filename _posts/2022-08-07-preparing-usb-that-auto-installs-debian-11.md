@@ -107,6 +107,7 @@ menuentry --hotkey=i 'Install' {
 `auto-install/enable=true` delays the asking of localization questions, without this line you wouldn't be able to preseed them in preseed.cfg
 
 
+&nbsp;
 *txt.cfg* file can be found by navigating from the root directory to isolinux - `isolinux/txt.cfg`, open the file and edit the append line from:
 ```
 label install
@@ -122,6 +123,7 @@ label install
 	kernel /install.amd/vmlinuz
         append preseed/file=/cdrom/preseed.cfg auto-install/enable=true vga=788 initrd=/install.amd/initrd.gz --- quiet
 ```
+
 
 &nbsp;
 Finally, we want to update *isolinux.cfg* file, which can be found in the same directory as *txt.cfg* - `isolinux/isolinux.cfg`. We need to change `default` line from `vesamenu.c32`:
